@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech For Girls Registration</title>
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌸 Tech For Girls: Registration Form</h1>
+    
+    <form id="registrationForm">
+      <label>Name:</label>
+      <input type="text" id="name" required />
+
+      <label>Phone Number:</label>
+      <input type="number" id="phone" required />
+
+      <label>Email ID:</label>
+      <input type="email" id="email" required />
+
+      <label>College/Department:</label>
+      <input type="text" id="college" required />
+
+      <label>Upload Screenshot (Resume/Photo):</label>
+      <input type="file" id="screenshot" accept="image/*,application/pdf" required />
+
+      <button type="button" id="whatsappBtn">📲 Share on WhatsApp</button>
+      <p id="shareCountText">Click count: 0/5</p>
+
+      <button type="submit" id="submitBtn">Submit Registration</button>
+    </form>
+
+    <p id="message"></p>
+  </div>
+
+  <script src="script1.js"></script>
+</body>
+</html>
