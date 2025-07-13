@@ -12,13 +12,24 @@ form.reset();
 shareCountText.textContent = "Click count: 0/5";
 messageEl.textContent = "";
 
+// ✅ WhatsApp sharing with mobile + desktop support
 whatsappBtn.addEventListener("click", () => {
   if (shareCount >= maxShareCount) return;
 
   const message = encodeURIComponent("Hey Buddy, Join Tech For Girls Community! 🌸💻");
-  const whatsappURL = `https://wa.me/?text=${message}`;
+
+  // Detect if user is on mobile
+  const isMobile = /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  // WhatsApp URL depending on device
+  const whatsappURL = isMobile
+    ? `whatsapp://send?text=${message}`
+    : `https://web.whatsapp.com/send?text=${message}`;
+
+  // Open in new tab
   window.open(whatsappURL, "_blank");
 
+  // Update share count
   shareCount++;
   shareCountText.textContent = `Click count: ${shareCount}/${maxShareCount}`;
 
@@ -27,6 +38,7 @@ whatsappBtn.addEventListener("click", () => {
   }
 });
 
+// ✅ Form submission
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -70,11 +82,11 @@ form.addEventListener("submit", async (e) => {
       });
 
       if (response.ok) {
-        // ✅ Show success message
+        // ✅ Show message
         messageEl.textContent = "🎉 Your submission has been recorded. Thanks for being part of Tech for Girls!";
         messageEl.style.color = "green";
 
-        // ✅ Wait 3 seconds then reset everything
+        // ✅ Wait and reset everything
         setTimeout(() => {
           form.reset();
           shareCount = 0;
